@@ -5,7 +5,18 @@ function client(endpoint, customConfig = {}) {
   // and I've got some code there you can copy/paste.
   // 🐨 call window.fetch(fullURL, config) then handle the json response
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-  // 💰 here's how to get the full URL: `${process.env.REACT_APP_API_URL}/${endpoint}`
+  
+  const url = `${process.env.REACT_APP_API_URL}/${endpoint}`
+
+  const config = {
+    method: 'GET',
+    ...customConfig,
+  }
+  
+  return window
+    .fetch(url, config)
+    .then(response => response.json())
+
 }
 
 export {client}
